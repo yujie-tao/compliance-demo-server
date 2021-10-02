@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJl9f21641a364619a3f621956b9378c22d"/>
+        <meta charset="utf-8">
+        <title>BoH-Web-Demo-Test</title>
+        <meta name="generator" content="Google Web Designer 11.0.2.0415">
+        <meta name="template" content="Expandable 3.0.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="gwdpage_style.css" rel="stylesheet" data-version="13" data-exports-type="gwd-page">
+        <link href="gwdpagedeck_style.css" rel="stylesheet" data-version="14" data-exports-type="gwd-pagedeck">
+
+        <script data-source="googbase_min.js" data-version="4" data-exports-type="googbase" src="googbase_min.js"></script>
+        <script data-source="gwd_webcomponents_v1_min.js" data-version="2" data-exports-type="gwd_webcomponents_v1" src="gwd_webcomponents_v1_min.js"></script>
+        <script data-source="gwdpage_min.js" data-version="13" data-exports-type="gwd-page" src="gwdpage_min.js"></script>
+        <script data-source="gwdpagedeck_min.js" data-version="14" data-exports-type="gwd-pagedeck" src="gwdpagedeck_min.js"></script>
+        <script type="text/javascript" gwd-events="support" src="gwd-events-support.1.0.js"></script>
+        <script type="text/javascript" src="./csscolor.js"></script>
+        <script type="text/javascript" src="./wssettings.js"></script>
+
+        <script type="text/javascript" gwd-events="handlers">
+            gwd.leftSelect = function(event){
+                const index = "left"
+                const stype = "hello"
+                if (wsclient.is_connected_to_dev) wsclient.start_dev(index, stype);
+            }
+            gwd.rightSelect = function(event){
+                const index = "left"
+                const stype = "hello"
+                if (wsclient.is_connected_to_dev) wsclient.start_dev(index, stype);
+            }
+            //  Connect Button Event
+            gwd.testWS = function(event) {
+              let name = document.getElementById("name_box").value;
+              if (name == '') name = "anonymous";
+              if (!wsclient.is_connected_to_dev) {
+                wsclient.connect_to_dev(name);
+              } else {
+                wsclient.disconnect_from_dev();
+              }
+            }
+
+          </script>
+          <script type="text/javascript" gwd-events="registration">
+            gwd.actions.events.registerEventHandlers = function(event) {
+              gwd.actions.events.addHandler('connect', 'click', gwd.testWS, false);
+              gwd.actions.events.addHandler('left', 'click', gwd.leftSelect, false);
+              gwd.actions.events.addHandler('right', 'click', gwd.rightSelect, false);
+            };
+
+            gwd.actions.events.deregisterEventHandlers = function(event) {
+              gwd.actions.events.removeHandler('connect', 'click', gwd.testWS, false);
+              gwd.actions.events.addHandler('left', 'click', gwd.leftSelect, false);
+              gwd.actions.events.addHandler('right', 'click', gwd.rightSelect, false);
+            };
+            
+            document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
+            document.addEventListener("unload", gwd.actions.events.deregisterEventHandlers);
+          </script>
+    </head>
+
+    <body class="document-body">
+        <h1> Demo </h1>
+          <div id="contentdiv" class="">
+            <button id="connect" class="">Try the remote EMS</button>
+            <input type="text" id="name_box" class="" placeholder="enter your name">
+            <label id="log_box" class=""></label>
+            
+            <button id="left">left</button>
+            <button id="right">right</button>
+          </div>
+    </body>
+</html>

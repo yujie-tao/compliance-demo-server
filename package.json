@@ -1,0 +1,23 @@
+{
+  "name": "bohems-aws",
+  "version": "1.0.0",
+  "description": "webserver program",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Philosophistoria/BoHEMS-webserver-nodejs.git"
+  },
+  "author": "Akifumi Takahashi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Philosophistoria/BoHEMS-webserver-nodejs/issues"
+  },
+  "homepage": "https://github.com/Philosophistoria/BoHEMS-webserver-nodejs#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.4.5"
+  }
+}
