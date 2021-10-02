@@ -1,5 +1,5 @@
 const wsclient = {};
-wsclient.sock = new WebSocket("ws://127.0.0.1:5001");
+wsclient.sock = new WebSocket("ws://34.125.186.152:5001");
 // wsclient.sock = new WebSocket("ws://54.168.9.34:5001");
 wsclient.is_connected_to_dev = false;
 
