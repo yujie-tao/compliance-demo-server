@@ -115,9 +115,9 @@ wsclient.disconnect_from_dev = () => {
 };
 
 wsclient.start_dev = (index, stim_type) => {
-  send_request("start", {finger: index, type: stim_type}, undefined);
+  send_request("start", {soft_object: index}, undefined);
 }
 
 wsclient.stop_dev = (index, stim_type) => {
-  send_request("stop", {finger: index, type: stim_type}, undefined);
+  send_request("stop", {soft_object: index, type: stim_type}, undefined);
 }

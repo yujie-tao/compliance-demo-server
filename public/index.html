@@ -3,30 +3,30 @@
     <head>
         <meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJl9f21641a364619a3f621956b9378c22d"/>
         <meta charset="utf-8">
-        <title>BoH-Web-Demo-Test</title>
+        <title>Compliance Haptics Demo</title>
         <meta name="generator" content="Google Web Designer 11.0.2.0415">
         <meta name="template" content="Expandable 3.0.0">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="gwdpage_style.css" rel="stylesheet" data-version="13" data-exports-type="gwd-page">
-        <link href="gwdpagedeck_style.css" rel="stylesheet" data-version="14" data-exports-type="gwd-pagedeck">
+        <link rel="stylesheet" href="styles.css">
 
         <script data-source="googbase_min.js" data-version="4" data-exports-type="googbase" src="googbase_min.js"></script>
         <script data-source="gwd_webcomponents_v1_min.js" data-version="2" data-exports-type="gwd_webcomponents_v1" src="gwd_webcomponents_v1_min.js"></script>
         <script data-source="gwdpage_min.js" data-version="13" data-exports-type="gwd-page" src="gwdpage_min.js"></script>
         <script data-source="gwdpagedeck_min.js" data-version="14" data-exports-type="gwd-pagedeck" src="gwdpagedeck_min.js"></script>
         <script type="text/javascript" gwd-events="support" src="gwd-events-support.1.0.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="./csscolor.js"></script>
         <script type="text/javascript" src="./wssettings.js"></script>
 
         <script type="text/javascript" gwd-events="handlers">
             gwd.leftSelect = function(event){
                 const index = "left"
-                const stype = "hello"
+                const stype = "none"
                 if (wsclient.is_connected_to_dev) wsclient.start_dev(index, stype);
             }
             gwd.rightSelect = function(event){
-                const index = "left"
-                const stype = "hello"
+                const index = "right"
+                const stype = "none"
                 if (wsclient.is_connected_to_dev) wsclient.start_dev(index, stype);
             }
             //  Connect Button Event
@@ -53,21 +53,53 @@
               gwd.actions.events.addHandler('left', 'click', gwd.leftSelect, false);
               gwd.actions.events.addHandler('right', 'click', gwd.rightSelect, false);
             };
-            
+
             document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
             document.addEventListener("unload", gwd.actions.events.deregisterEventHandlers);
           </script>
+
+          <script>
+              $(function() {
+                $("[data-toggle]").click(function() {
+                    var target_left = $(".left-text");
+                    var target_right = $(".right-text");
+                    if($(this).prop('checked')) {
+                        target_left.css('opacity',0.5);
+                        target_right.css('opacity',1);
+                    } else {
+                        target_left.css('opacity',1);
+                        target_right.css('opacity',0.5);
+                    }
+                })
+            })                        
+          </script>
     </head>
 
-    <body class="document-body">
-        <h1> Demo </h1>
+    <body class="document-body button-toggle-wrap">
+        <h1> change my perception toward rigid objects</h1>
           <div id="contentdiv" class="">
-            <button id="connect" class="">Try the remote EMS</button>
-            <input type="text" id="name_box" class="" placeholder="enter your name">
-            <label id="log_box" class=""></label>
+            <div>
+                <button id="connect" class="">Log on</button>
+                <input type="text" id="name_box" class="" placeholder="enter your name">
+                <label id="log_box" class=""></label>
+            </div>
             
-            <button id="left">left</button>
+ <!--            <button id="left">left</button>
             <button id="right">right</button>
+ -->
+
+          <label class="button-toggle-wrap-inner">
+              <h3 class="left-text">left</h3>
+              <input class="toggler" type="checkbox" data-toggle="button-toggle"/>
+              <div class="button-toggle">
+                <div class="handle">
+                  <div class="bars"></div>
+                </div>
+              </div>
+              <h3 class="right-text">right</h3>
+            </label>
           </div>
+
+        <p>← <a href="https://www.nxworld.net/css-image-hover-effects.html" target="_blank">read the paper</a></p>
     </body>
 </html>
