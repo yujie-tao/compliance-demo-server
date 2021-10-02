@@ -1,4 +1,4 @@
-const wsclient = {};
+const wsclient = {}; 
 // wsclient.sock = new WebSocket("ws://34.125.186.152:5001");
 wsclient.sock = new WebSocket("ws://0.0.0.0:5001");
 wsclient.is_connected_to_dev = false;
