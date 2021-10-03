@@ -6,7 +6,7 @@ wsclient.is_connected_to_dev = false;
 const reset_connect_button = () => {
   wsclient.button = wsclient.button || document.getElementById("connect");
   wsclient.is_connected_to_dev = false;
-  wsclient.button.innerText = "Try the remote EMS";
+  wsclient.button.innerText = "let me try!";
 }
 
 const wrilte_nl_in_logbox = (str_nl) => {
@@ -14,7 +14,8 @@ const wrilte_nl_in_logbox = (str_nl) => {
   wsclient.logbox.lastline = wsclient.logbox.lastline || '';
   wsclient.logbox.oldlines = wsclient.logbox.oldlines || '';
   wsclient.logbox.oldlines = "* " + wsclient.logbox.lastline + "<br /> " + wsclient.logbox.oldlines;
-  wsclient.logbox.innerHTML = "* " + str_nl + "<br /> ----- new line ----- <br /><br />" + wsclient.logbox.oldlines;
+  // wsclient.logbox.innerHTML = "* " + str_nl + "<br /> ----- new line ----- <br /><br />" + wsclient.logbox.oldlines;
+  wsclient.logbox.innerHTML = "* " + str_nl ;
   wsclient.logbox.lastline = str_nl;
 }
 
@@ -64,7 +65,13 @@ wsclient.sock.addEventListener("message", ev => {
     if (message.response == "accepted"){
       wsclient.is_connected_to_dev = true;
       wrilte_nl_in_logbox("Your turn! > @" + message.name);
-      wsclient.button.innerText = "Release the control now";
+      wsclient.button.innerText = "release control";
+
+       if($("[data-toggle]").prop('checked')) {
+            document.getElementById("right").click();
+        } else {
+            document.getElementById("left").click();
+        }
     }
     else if (message.response == "rejected"){
       wrilte_nl_in_logbox("Sorry, now @" + message.name);
@@ -80,9 +87,11 @@ wsclient.sock.addEventListener("message", ev => {
       wrilte_nl_in_logbox("@" + message.name + " has released the control. Another attendee can try it now!");
     }
     else if (message.response == "time"){
-      wsclient.button.innerText = "@" + message.name + "'s turn ends in " + message.option;
+      // wsclient.button.innerText = "@" + message.name + "'s turn";
+      wrilte_nl_in_logbox("@" + message.name+"'s turn ends in " + message.option + "s");
       if (wsclient.is_connected_to_dev){
-        wsclient.button.innerHTML += " or <b>Release the control now</b>"
+        // wsclient.button.innerHTML += " or <b>Release the control now</b>"
+        wsclient.button.innerText = "release control"
       }
     }
     else if(message.response == "start"){

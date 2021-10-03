@@ -31,12 +31,15 @@
             }
             //  Connect Button Event
             gwd.testWS = function(event) {
-              let name = document.getElementById("name_box").value;
-              if (name == '') name = "anonymous";
+              // let name = document.getElementById("name_box").value;
+              name = ""
+              if (name == '') name = "annoy.";
               if (!wsclient.is_connected_to_dev) {
                 wsclient.connect_to_dev(name);
+                $(".alter-softness").css("display","block")
               } else {
                 wsclient.disconnect_from_dev();
+                $(".alter-softness").css("display","none")
               }
             }
 
@@ -66,40 +69,51 @@
                     if($(this).prop('checked')) {
                         target_left.css('opacity',0.5);
                         target_right.css('opacity',1);
+                        $( "#right" ).click();
                     } else {
                         target_left.css('opacity',1);
                         target_right.css('opacity',0.5);
+                        $( "#left" ).click();
                     }
                 })
             })                        
           </script>
     </head>
 
-    <body class="document-body button-toggle-wrap">
-        <h1> change my perception toward rigid objects</h1>
-          <div id="contentdiv" class="">
-            <div>
+    <body>
+          <div id="contentdiv" class="document-body button-toggle-wrap">
+            <h1>altering perceived softness of rigid objects</h1>
+            <div class="app_status">
+             <!--    <p>app status</p> -->
+                <p id="log_box" class=""></p>
+            </div>
+        
+            <div class="user_start">
+       <!--          <input type="text" id="name_box" class="" placeholder="your name"> -->
                 <button id="connect" class="">Log on</button>
-                <input type="text" id="name_box" class="" placeholder="enter your name">
-                <label id="log_box" class=""></label>
             </div>
             
- <!--            <button id="left">left</button>
-            <button id="right">right</button>
- -->
 
-          <label class="button-toggle-wrap-inner">
-              <h3 class="left-text">left</h3>
-              <input class="toggler" type="checkbox" data-toggle="button-toggle"/>
-              <div class="button-toggle">
-                <div class="handle">
-                  <div class="bars"></div>
-                </div>
-              </div>
-              <h3 class="right-text">right</h3>
-            </label>
+            <button id="left" style="display:none">left</button>
+            <button id="right" style="display:none">right</button>
+
+         <div class="alter-softness" style="display: none;">
+          <h2>toggle to choose which object should feel softer</h2>
+              <label class="button-toggle-wrap-inner">
+                  <h3 class="left-text">left</h3>
+                  <input class="toggler" type="checkbox" data-toggle="button-toggle"/>
+                  <div class="button-toggle">
+                    <div class="handle">
+                      <div class="bars"></div>
+                    </div>
+                  </div>
+                  <h3 class="right-text">right</h3>
+                </label>
+           </div>
           </div>
 
-        <p>← <a href="https://www.nxworld.net/css-image-hover-effects.html" target="_blank">read the paper</a></p>
+        <div class="paper">
+            <p>← <a href="https://yujietao.me/files/Altering_Perceived_Softness_of_Real_Rigid_Objects_by_Restricting_Fingerpad_Deformation_Preprint.pdf" target="_blank">read the paper</a></p>
+        </div>
     </body>
 </html>
