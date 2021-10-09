@@ -1,6 +1,6 @@
 const wsclient = {}; 
-wsclient.sock = new WebSocket("ws://34.125.186.152:5001");
-// wsclient.sock = new WebSocket("ws://0.0.0.0:5001");
+// wsclient.sock = new WebSocket("ws://34.125.186.152:5001");
+wsclient.sock = new WebSocket("ws://0.0.0.0:5001");
 wsclient.is_connected_to_dev = false;
 
 const reset_connect_button = () => {
@@ -75,6 +75,7 @@ wsclient.sock.addEventListener("message", ev => {
     }
     else if (message.response == "rejected"){
       wrilte_nl_in_logbox("Sorry, now @" + message.name);
+      $(".alter-softness").css("display","none");
     }
     else if (message.response == "connected"){
       wrilte_nl_in_logbox("@" + message.name + " has got it started.");
@@ -83,6 +84,7 @@ wsclient.sock.addEventListener("message", ev => {
       if(wsclient.is_connected_to_dev) {
         wrilte_nl_in_logbox("You has been disconnected");
       }
+      $(".alter-softness").css("display","none");
       reset_connect_button();
       wrilte_nl_in_logbox("@" + message.name + " has released the control. Another attendee can try it now!");
     }
